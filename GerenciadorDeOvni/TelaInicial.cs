@@ -49,8 +49,8 @@ namespace GerenciadorDeOvni
             }
              // Variaveis para receber os valores dos txbs
 
-            int maxTripulantes = int.Parse(cmbPlanetas.Text);
-            int maxAbduzidos = int.Parse(cmbPlanetas.Text);
+            int maxTripulantes = int.Parse(txbTripulantes.Text);
+            int maxAbduzidos = int.Parse(txbabiduzidos.Text);
             string planetaOrigem = cmbPlanetas.Text;
 
             //instanciar o OVNI

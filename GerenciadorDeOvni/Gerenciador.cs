@@ -37,14 +37,15 @@ namespace GerenciadorDeOvni
             cmbPlanetas.Text = ovni.planetaAtual;
 
             //Atualizar informções
-            btnLigar.Enabled = ovni.Situacao;
-            btnDesligar.Enabled = !ovni.Situacao;
+            btnLigar.Enabled = !ovni.Situacao;
+            btnDesligar.Enabled = ovni.Situacao;
 
             // ativardesativar o gbr de aordo com o status da nave
             grbtripulantes.Enabled = ovni.Situacao;
             grbAbduzidos.Enabled = ovni.Situacao;
             grbPlaneta.Enabled = ovni.Situacao;
 
+            pibTerra.Image = ovni.planetaAtual == "Terra" ? Properties.Resources.terra : null; 
 
         }
 
@@ -96,5 +97,70 @@ namespace GerenciadorDeOvni
             }
             AtualizarInformacoes();
         }
+
+        private void btnremover_Click(object sender, EventArgs e)
+        {
+
+            if (ovni.AdicionarTripulante())
+            {
+                MessageBox.Show("Tripulantes removido!",
+                    "SUCESSO!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("O tripulante ja foi removido!",
+                    "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            AtualizarInformacoes();
+        }
+
+        private void btnAbduzir_Click(object sender, EventArgs e)
+        {
+
+            if (ovni.Abduzir())
+            {
+                MessageBox.Show("animal desconhecido abduido com sucesso!",
+                    "SUCESSO!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("O animal nao pode ser abduzido!",
+                    "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            AtualizarInformacoes();
+        }
+
+        private void btndDezabiduzir_Click(object sender, EventArgs e)
+        {
+
+            if (ovni.Abduzir())
+            {
+                MessageBox.Show("O animal foi dezabduzido!",
+                    "SUCESSO!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("O animal já foi dezabduzido!",
+                    "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            AtualizarInformacoes();
+
+        }
+
+        private void btnMudarplaneta_Click(object sender, EventArgs e)
+        {
+            if (ovni.MudarPlaneta(cmbPlanetas.Text))
+            {
+                MessageBox.Show("show voce chegou ao planeta!",
+                   "SUCESSO!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Nãon foi possivel mudar de planeta!",
+                    "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            AtualizarInformacoes();
+        }
+        
     }
 }
